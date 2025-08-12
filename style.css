@@ -1,0 +1,57 @@
+:root {
+    --bg-color: #05080f;
+    --primary-cyan: #00e6d0;
+    --primary-blue: #0099ff;
+    --text-light: #e0f7fa;
+    --text-medium: #a0b4c8;
+    --ui-panel-bg: rgba(18, 22, 40, 0.9);
+    --ui-border-color: rgba(0, 230, 208, 0.3);
+    --ui-glow-shadow: rgba(0, 230, 208, 0.2);
+}
+body { margin: 0; overflow: hidden; background-color: var(--bg-color); font-family: 'Poppins', sans-serif; color: var(--text-light); }
+canvas { display: block; position: fixed; top: 0; left: 0; z-index: 1; }
+#loader-overlay, #ui-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; flex-direction: column; z-index: 100; }
+#loader-overlay { background-color: var(--bg-color); transition: opacity 1.5s ease-in-out; }
+#loader-overlay.hidden { opacity: 0; pointer-events: none; }
+#loader-overlay .message { font-family: 'Fira Code', monospace; font-size: 1.2rem; opacity: 0; }
+#ui-container { pointer-events: none; }
+.node-label { font-family: 'Fira Code', monospace; color: var(--primary-cyan); background: rgba(5, 8, 15, 0.6); padding: 5px 10px; border-radius: 5px; font-size: 14px; text-shadow: 0 0 5px var(--primary-cyan); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.ui-panel { position: relative; width: 90%; max-width: 800px; max-height: 85vh; background: var(--ui-panel-bg); border: 1px solid var(--ui-border-color); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 2.5rem 3rem; border-radius: 15px; box-shadow: 0 0 40px var(--ui-glow-shadow); pointer-events: auto; opacity: 0; transform: scale(0.95) translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; overflow-y: auto; text-align: left; }
+.ui-panel.visible { opacity: 1; transform: scale(1) translateY(0); }
+.ui-panel::-webkit-scrollbar { width: 8px; }
+.ui-panel::-webkit-scrollbar-track { background: transparent; }
+.ui-panel::-webkit-scrollbar-thumb { background-color: var(--primary-cyan); border-radius: 10px; border: 2px solid transparent; background-clip: content-box; }
+.ui-panel h2 { font-family: 'Fira Code', monospace; color: var(--primary-cyan); margin-top: 0; margin-bottom: 1.5rem; font-size: 2rem; text-shadow: 0 0 10px var(--ui-glow-shadow); }
+.ui-panel p { line-height: 1.8; margin-bottom: 1.2rem; color: var(--text-medium); }
+.ui-panel strong { color: var(--text-light); font-weight: 600; }
+.ui-panel a { color: var(--primary-blue); text-decoration: none; font-weight: 600; transition: color 0.3s; }
+.ui-panel a:hover { color: var(--primary-cyan); }
+.back-button { position: absolute; top: 20px; right: 20px; background: none; border: 1px solid var(--ui-border-color); color: var(--text-medium); width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.back-button:hover { color: var(--bg-color); background: var(--primary-cyan); transform: rotate(180deg); border-color: var(--primary-cyan); }
+.resume-download-btn { display: inline-block; margin-top: 1rem; padding: 12px 24px; border: 1px solid var(--primary-cyan); color: var(--primary-cyan); background: transparent; border-radius: 8px; font-weight: 600; font-size: 1rem; transition: all 0.3s; }
+.resume-download-btn i { margin-right: 8px; }
+.resume-download-btn:hover { background: var(--primary-cyan); color: var(--bg-color); box-shadow: 0 0 20px var(--ui-glow-shadow); transform: translateY(-2px); }
+.info-section { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--ui-border-color); }
+.info-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.info-section h3 { color: var(--text-light); margin-bottom: 0.25rem; }
+.info-section .meta { color: var(--primary-blue); font-size: 0.9rem; margin-bottom: 0.75rem; }
+.info-section .meta strong { color: var(--primary-blue); font-weight: bold; }
+.cert-button { display: inline-block; text-decoration: none; margin-top: 0.5rem; font-size: 0.9rem; padding: 8px 15px; border: 1px solid var(--primary-blue); color: var(--primary-blue); border-radius: 5px; transition: all 0.3s; }
+.cert-button:hover { background: var(--primary-blue); color: white; transform: translateY(-2px); }
+.cert-button i { margin-right: 8px; }
+.core-profile-content { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.profile-pic { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--primary-cyan); object-fit: cover; flex-shrink: 0; }
+.social-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.social-links a { font-size: 1.8rem; color: var(--text-medium); transition: color 0.3s, transform 0.3s; }
+.social-links a:hover { color: var(--primary-cyan); transform: scale(1.1); }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.contact-item { display: flex; align-items: center; gap: 15px; background: rgba(0, 153, 255, 0.05); padding: 15px; border-radius: 8px; border-left: 3px solid var(--primary-blue); text-decoration: none; color: var(--text-medium); transition: all 0.3s ease; }
+.contact-item:hover { background: rgba(0, 153, 255, 0.1); transform: translateY(-3px); color: var(--text-light); }
+.contact-item i { font-size: 1.8rem; color: var(--primary-cyan); }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.skill-category h3 { color: var(--primary-cyan); border-bottom: 1px solid var(--ui-border-color); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+#top-nav-bar { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 99; opacity: 0; transition: opacity 1s 1s, transform 1s 1s; transform-origin: top center; }
+#loader-overlay.hidden ~ #top-nav-bar { opacity: 1; }
+.nav-bar-inner { display: flex; gap: 5px; padding: 8px; background: var(--ui-panel-bg); border: 1px solid var(--ui-border-color); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 30px; box-shadow: 0 0 30px var(--ui-glow-shadow); }
+.nav-button { background: transparent; border: none; color: var(--text-medium); padding: 8px 15px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; transition: all 0.3s; }
+.nav-button:hover, .nav-button.active { color: var(--primary-cyan); background: rgba(0, 230, 208, 0.1); }
